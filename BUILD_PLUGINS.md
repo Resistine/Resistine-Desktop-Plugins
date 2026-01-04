@@ -29,13 +29,12 @@ python3 build_plugins.py [options]
 **Generate `optional_plugins.json` from local plugins:**
 
 ```bash
-python3 build_plugins.py --output plugins/optional_plugins.json --downloads-dir ./downloads --url-base https://github.com/Resistine/Resistine-Desktop-Plugins/releases/
-```
+python3 build_plugins.py --output plugins/optional_plugins.json --downloads-dir ./downloads --url-base https://github.com/Resistine/Resistine-Desktop-Plugins/releases/download/2026.01.04-alpha/
 
 **Generate `default_plugins.json` and create zip archives:**
 
 ```bash
-python3 build_plugins.py --plugins-dir ../Resistine-Desktop/plugins --output plugins/default_plugins.json --downloads-dir ./downloads --url-base https://github.com/Resistine/Resistine-Desktop-Plugins/releases/
+python3 build_plugins.py --plugins-dir ../Resistine-Desktop/plugins --output plugins/default_plugins.json --downloads-dir ./downloads --url-base https://github.com/Resistine/Resistine-Desktop-Plugins/releases/download/2026.01.04-alpha/
 ```
 
 ## Requirements
