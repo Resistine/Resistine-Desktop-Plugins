@@ -3,12 +3,22 @@ import customtkinter
 import os 
 
 class Plugin(BasePlugin):
+    """    
+    Calculator plugin for Resistine Desktop.
+    """    
+        
     def __init__(self, app):
+        """    
+        Initialize the Calculator plugin.
+        :param app: Main application object.
+        """    
+        # def __init__(self, id, version, order, name, status, description, supported_systems, translations, icon_light_path, icon_dark_path, uninstall_enabled=True):
         super().__init__(
             id="100",
             version="2026.01.04-alpha",
             order=5,
             name="Calculator",
+            status=None,
             description="A simple and efficient calculator plugin for Resistine Desktop to demonstrate the plugin structure.",
             supported_systems=["Windows", "Linux", "Mac"],
             translations={"US": "Calculator", "DE": "Calculator", "ES": "Calculadora", "FR": "Calculatrice"},
@@ -16,6 +26,12 @@ class Plugin(BasePlugin):
             icon_dark_path=os.path.join(os.path.dirname(os.path.realpath(__file__)), "calculator_dark.png"),
         )
         self.app = app
+
+    def get_status(self):
+        """
+        Return the current operational state.
+        """
+        return None
 
     def create_main_screen(self):
         self.main_frame = customtkinter.CTkFrame(self.app, corner_radius=0, fg_color="transparent")

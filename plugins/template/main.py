@@ -21,11 +21,14 @@ class Plugin(BasePlugin):
         @brief Initialize the Template plugin.
         :param app: Main application object.
         """
+        
+        # def __init__(self, id, version, order, name, status, description, supported_systems, translations, icon_light_path, icon_dark_path, uninstall_enabled=True):
         super().__init__(
             id="000", # ID of the plugin is given by Resistine (expect something like 1234)
             version="2026.01.04-alpha", # Version of the plugin
             order=7, # Order of the plugin
             name="Template", # Name of the plugin
+            status=None,
             description="A template plugin to demonstrate plugin structure.", # Description of the plugin
             supported_systems=["Windows", "Linux", "Mac"], # Supported systems
             translations={"US": "Template", "DE": "Template", "ES": "Plantilla", "FR": "Modèle"},
@@ -37,6 +40,13 @@ class Plugin(BasePlugin):
             )
         )
         self.app = app
+        self.status = self.get_status()
+
+    def get_status(self):
+        """
+        @brief Return the current operational state.
+        """
+        return "OK"
 
     def create_main_screen(self):
         """
