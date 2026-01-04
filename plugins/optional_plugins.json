@@ -1,0 +1,49 @@
+{
+  "version": "2026.01.04-alpha",
+  "plugins": [
+    {
+      "id": "100",
+      "version": "2026.01.04-alpha",
+      "order": 5,
+      "name": "Calculator",
+      "description": "A simple and efficient calculator plugin for Resistine Desktop to demonstrate the plugin structure.",
+      "supported_systems": [
+        "Windows",
+        "Linux",
+        "Mac"
+      ],
+      "translations": {
+        "US": "Calculator",
+        "DE": "Calculator",
+        "ES": "Calculadora",
+        "FR": "Calculatrice"
+      },
+      "icon_light": "calculator_light.png",
+      "icon_dark": "calculator_dark.png",
+      "uninstall_enabled": true,
+      "url": "https://github.com/Resistine/Resistine-Desktop-Plugins/releases/calculator.zip"
+    },
+    {
+      "id": "000",
+      "version": "2026.01.04-alpha",
+      "order": 7,
+      "name": "Template",
+      "description": "A template plugin to demonstrate plugin structure.",
+      "supported_systems": [
+        "Windows",
+        "Linux",
+        "Mac"
+      ],
+      "translations": {
+        "US": "Template",
+        "DE": "Template",
+        "ES": "Plantilla",
+        "FR": "Mod\u00e8le"
+      },
+      "icon_light": "template_light.png",
+      "icon_dark": "template_dark.png",
+      "uninstall_enabled": true,
+      "url": "https://github.com/Resistine/Resistine-Desktop-Plugins/releases/template.zip"
+    }
+  ]
+}

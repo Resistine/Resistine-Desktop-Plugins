@@ -2,7 +2,7 @@
     "version": "2026.01.04-alpha",
     "plugins": [
         {
-            "id": "1001",
+            "id": "006",
             "order": 6,
             "name": "Calculator",
             "version": "1.0.0",
@@ -24,7 +24,7 @@
             "url": "https://github.com/Resistine/Resistine-Desktop-Plugins/releases/download/v1.0.0/calculator.zip"
         },
         {
-            "id": "1000",
+            "id": "100",
             "order": 5,
             "name": "Template",
             "version": "2026.01.04-alpha",
