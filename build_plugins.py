@@ -216,8 +216,8 @@ def build_plugins_json(plugins_dir, output_file, version, url_base=None, downloa
         else:
             print(f"Failed to extract metadata for {item}")
 
-    # Sort by order
-    plugins_list.sort(key=lambda x: x.get('order', 99))
+    # Sort by order (primary) and name (secondary)
+    plugins_list.sort(key=lambda x: (x.get('order', 99), x.get('name', '').lower()))
 
     output = {
         "version": version,

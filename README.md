@@ -55,7 +55,7 @@ Every plugin defines the following core metadata:
 | **Icon** | Visual representation for the UI (light and dark mode). |
 | **Translations** | Multilingual support for UI strings. |
 | **Supported Systems** | OS compatibility (e.g., Windows, Linux, Mac). |
-| 
+| |
 | **Uninstall enabled** | Whether the plugin can be uninstalled by the user or is a system one (Dashboard, Store, Help and Settings). |
 
 Each plugin must inherit from the `BasePlugin` class and implement the following methods:

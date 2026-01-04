@@ -1,12 +1,11 @@
 {
-  "version": "2026.01.04-alpha",
+  "version": "2026.01.05-alpha",
   "plugins": [
     {
       "id": "100",
       "version": "2026.01.04-alpha",
       "order": 5,
       "name": "Calculator",
-      "status": "OK",
       "description": "A simple and efficient calculator plugin for Resistine Desktop to demonstrate the plugin structure.",
       "supported_systems": [
         "Windows",
