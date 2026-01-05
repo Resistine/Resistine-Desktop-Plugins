@@ -22,7 +22,7 @@
       "icon_light": "calculator_light.png",
       "icon_dark": "calculator_dark.png",
       "uninstall_enabled": true,
-      "url": "https://github.com/Resistine/Resistine-Desktop-Plugins/releases/download/2026.01.04-alpha/calculator.zip"
+      "url": "https://github.com/Resistine/Resistine-Desktop-Plugins/releases/download/2026.01.04/calculator.zip"
     },
     {
       "id": "000",
@@ -44,7 +44,7 @@
       "icon_light": "template_light.png",
       "icon_dark": "template_dark.png",
       "uninstall_enabled": true,
-      "url": "https://github.com/Resistine/Resistine-Desktop-Plugins/releases/download/2026.01.04-alpha/template.zip"
+      "url": "https://github.com/Resistine/Resistine-Desktop-Plugins/releases/download/2026.01.04/template.zip"
     }
   ]
 }
