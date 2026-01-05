@@ -12,6 +12,7 @@ import argparse
 import sys
 import zipfile
 import shutil
+import fnmatch
 from datetime import datetime
 
 def parse_plugin_file(file_path):
@@ -96,23 +97,53 @@ def parse_plugin_file(file_path):
 def create_plugin_archive(plugin_dir, output_path):
     """
     Create a zip archive of the plugin directory.
-    Excludes __pycache__ and other common ignore files.
+    Excludes files and directories based on root .gitignore and common patterns.
     """
+    # Load .gitignore patterns from root
+    root_dir = os.path.dirname(os.path.realpath(__file__))
+    gitignore_path = os.path.join(root_dir, '.gitignore')
+    patterns = []
+    
+    if os.path.exists(gitignore_path):
+        with open(gitignore_path, 'r', encoding='utf-8') as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#'):
+                    # Remove trailing slash for matching consistency
+                    patterns.append(line.rstrip('/'))
+    
+    # Always exclude these for safety
+    patterns.extend(['__pycache__', '.git', '.vscode', '.venv', '*.py[codz]', '*.zip'])
+
+    def should_ignore(path, name):
+        # Check against patterns
+        # Note: This is a simplified .gitignore matcher
+        for pattern in patterns:
+            if fnmatch.fnmatch(name, pattern) or fnmatch.fnmatch(path, pattern):
+                return True
+        return False
+
     try:
         with zipfile.ZipFile(output_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
             for root, dirs, files in os.walk(plugin_dir):
+                # Calculate path relative to plugin root for pattern matching
+                rel_root = os.path.relpath(root, plugin_dir)
+                if rel_root == '.':
+                    rel_root = ''
+
                 # Modify dirs in-place to skip ignored directories
-                dirs[:] = [d for d in dirs if d not in ('__pycache__', '.git', '.vscode')]
+                ignored_dirs = [d for d in dirs if should_ignore(os.path.join(rel_root, d), d)]
+                for d in ignored_dirs:
+                    dirs.remove(d)
                 
                 for file in files:
-                    if file.endswith('.pyc') or file == '.DS_Store':
+                    rel_file_path = os.path.join(rel_root, file)
+                    if should_ignore(rel_file_path, file):
                         continue
                         
                     file_path = os.path.join(root, file)
                     # Archive name should be relative to the plugin root
-                    # e.g. 'main.py' not '/path/to/plugins/plugin/main.py'
-                    arcname = os.path.relpath(file_path, plugin_dir)
-                    zipf.write(file_path, arcname)
+                    zipf.write(file_path, rel_file_path)
         return True
     except Exception as e:
         print(f"Error creating archive for {plugin_dir}: {e}")
@@ -147,27 +178,7 @@ def build_plugins_json(plugins_dir, output_file, version, url_base=None, downloa
             # Add version if missing (inherit global version or default)
             if 'version' not in meta:
                 meta['version'] = version
-            
-            # Default uninstall_enabled to True if missing for safety, though base_plugin might have defaults
-            # Actually JSON usually has it. Let's look at default_plugins.json.
-            # default_plugins.json has some false.
-            # We can't easily parse property setters/getters from AST for dynamic values without more complex logic.
-            # But the super().__init__ usually contains the defaults for the class.
-            # If uninstall_enabled is NOT in __init__, we need a way to determine it.
-            # In the current codebase, it seems it's NOT in __init__?
-            # Let's check base_plugin.py again.
-            pass 
-            
-            # Correction: BasePlugin.__init__ doesn't seem to take uninstall_enabled based on my memory of the file view (Step 9).
-            # It had: id, order, name, status, description, supported_systems, translations, icon_light_path, icon_dark_path
-            # So uninstall_enabled is likely a property or hardcoded in the list logic, OR I missed it.
-            # Checking Step 32 (default_plugins.json) -> it has "uninstall_enabled".
-            # Checking Step 9 (base_plugin.py) -> __init__ args NOT include uninstall_enabled.
-            # So where does it come from? 
-            # Looking at default_plugins.json, Dashboard is False, Chat is True.
-            # This suggests it might be hardcoded in the JSON generator or derived from ID/Name.
-            # For now, I will default it to True, and hardcode exceptions for known system plugins.
-            
+           
             # ID-based uninstall disabling:
             # 001: Dashboard, 004: Store, 009: Help, 010: Settings
             disabled_uninstall_ids = ["001", "004", "009", "010"]

@@ -42,6 +42,10 @@ Permanent link: https://raw.githubusercontent.com/Resistine/Resistine-Desktop-Pl
 To run the plugins, use the `./run.sh` script.
 It will create a virtual environment and ask you which plugin to run.
 
+For building the plugins for production, see the BUILD_PLUGINS.md file.
+
+TODO: Do not forget to sign the plugins before uploading them to the store.
+
 
 ## 🔌 The Plugin System
 

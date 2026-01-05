@@ -25,7 +25,7 @@ class Plugin(BasePlugin):
         # def __init__(self, id, version, order, name, status, description, supported_systems, translations, icon_light_path, icon_dark_path, uninstall_enabled=True):
         super().__init__(
             id="000", # ID of the plugin is given by Resistine (expect something like 1234)
-            version="2026.01.04-alpha", # Version of the plugin
+            version="2026.01.04", # Version of the plugin
             order=7, # Order of the plugin
             name="Template", # Name of the plugin
             status=None,

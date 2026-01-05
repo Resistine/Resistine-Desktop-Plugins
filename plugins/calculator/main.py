@@ -15,7 +15,7 @@ class Plugin(BasePlugin):
         """    
         super().__init__(
             id="100",
-            version="2026.01.05-alpha",
+            version="2026.01.04",
             order=5,
             name="Calculator",
             status="OK",
