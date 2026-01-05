@@ -37,6 +37,12 @@ For advanced features and enterprise integrations, users are forwarded to regist
 Permanent link: https://raw.githubusercontent.com/Resistine/Resistine-Desktop-Plugins/main/plugins/optional_plugins.json
 
 
+## 🚀 How to Test Run Plugins
+
+To run the plugins, use the `./run.sh` script.
+It will create a virtual environment and ask you which plugin to run.
+
+
 ## 🔌 The Plugin System
 
 Plugins are Object-Oriented modules that follow a strict structure for consistency and safety.
